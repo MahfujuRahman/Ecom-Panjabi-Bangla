@@ -16,10 +16,11 @@
 
             <div class="col-lg-7">
                 <p class="bn text-center">
+
                     <b>
                         জরুরি যোগাযোগ:
-                        <a href="tel:+8809606990177" class="text-primary">
-                            {{ \App\Helpers\ConvertHelper::convertToBanglaNumbers(8809606990177) }}৳
+                        <a href="tel:{{ $sales_contact_1->value }}" class="text-primary">
+                            {{ \App\Helpers\ConvertHelper::convertToBanglaNumbers($sales_contact_1->value) }}
                         </a>
                     </b>
                 </p>

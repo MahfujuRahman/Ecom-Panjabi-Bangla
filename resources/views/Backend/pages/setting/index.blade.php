@@ -57,7 +57,8 @@
                                 <div class="mb-3">
                                     <label for="title-{{ $details->id }}" class="form-label">Title</label>
                                     <input type="text" name="title" id="title-{{ $details->id }}"
-                                        class="form-control" value="{{ $details->title }}" placeholder="Enter title">
+                                        class="form-control" readonly value="{{ $details->title }}"
+                                        placeholder="Enter title">
                                 </div>
 
                                 @if ($details->type == 'text')
@@ -72,8 +73,9 @@
                                         placeholder="Enter Setting value" required value="{{ $details->value }}" />
                                 @elseif ($details->type == 'file')
                                     <label for="value-{{ $details->id }}" class="form-label">Value</label>
-                                    <input type="file" class="form-control mb-3" id="value-{{ $details->id }}" name="value"
-                                        placeholder="Enter Setting value" required value="{{ $details->value }}" />
+                                    <input type="file" class="form-control mb-3" id="value-{{ $details->id }}"
+                                        name="value" placeholder="Enter Setting value" required
+                                        value="{{ $details->value }}" />
                                 @endif
 
                                 <button type="submit" class="btn btn-primary">Save Changes</button>

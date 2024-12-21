@@ -84,6 +84,7 @@ class HomeController extends Controller
         $image_gallery = ImageGalleryTitle::with('images')->where('website_id', $website->id)->orderBy('id')->first();
         $product_items = Product::orderBy('id')->where('website_id', $website->id)->get();
         $video = Video::where('website_id', $website->id)->first();
+        $sales_contact_1 = Setting::where('title', 'sales conact 1')->where('website_id', $website->id)->select('value')->first();
 
         $global_discount_details = [
             "start_time" => $this->global_discount_start_time,
@@ -102,6 +103,7 @@ class HomeController extends Controller
                 "global_discount" => $this->global_discount,
                 "global_discount_details" => $global_discount_details,
                 "video" => $video,
+                'sales_contact_1' => $sales_contact_1,
             ]
         );
     }
