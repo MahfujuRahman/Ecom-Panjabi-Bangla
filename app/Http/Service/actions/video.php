@@ -17,7 +17,7 @@ class video
             'sub_title' => 'আমাদের প্রোডাক্ট এবং সেবা সম্পর্কে বিস্তারিত জানুন',
             'button_title' => 'এখানে ক্লিক করুন',
             'button_url' => url('https://www.youtube.com/watch?v=eno--4Iviiw'),
-            'image' => 'dummy_image/video_background.webp',
+            'image' => 'dummy_image/video_background.png',
         ]);
         return;
     }

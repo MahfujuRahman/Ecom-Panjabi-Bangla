@@ -1,6 +1,6 @@
 <!-- Hero Section -->
 <section id="hero" class="hero section dark-background"
-    style="background:url('https://app-area.superb.com.bd/banner/H4ZjT1733734152.jpg');">
+    style="background:url('{{ asset('dummy_image/banner.webp') }}');">
     <div class="overlay">
         <div class="container">
             <div class="row gy-4">

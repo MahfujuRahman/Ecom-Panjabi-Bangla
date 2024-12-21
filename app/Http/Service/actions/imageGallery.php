@@ -15,26 +15,26 @@ class imageGallery
             'user_id' => Auth::user()->id,
             'website_id' => $id,
             'title' => 'প্রোডাক্ট গ্যালারি',
-            'subtitle' => "সব ধরনের শীতের প্রোডাক্ট এখানে পাওয়া যাবে",
+            'subtitle' => "সব ধরনের পাঞ্জাবী প্রোডাক্ট এখানে পাওয়া যাবে",
             'btn_title' => "অর্ডার করুন",
             'btn_url' => url('/#order'),
         ]);
 
         ImageGalleryValue::create([
             'image_gallery_title_id' => $gallery_id->id,
-            'image' => 'dummy_image/product-4.jpg',
+            'image' => 'dummy_image/4.webp',
             'order' => 1,
         ]);
 
         ImageGalleryValue::create([
             'image_gallery_title_id' => $gallery_id->id,
-            'image' => 'dummy_image/product-5.jpg',
+            'image' => 'dummy_image/5.webp',
             'order' => 2,
         ]);
 
         ImageGalleryValue::create([
             'image_gallery_title_id' => $gallery_id->id,
-            'image' => 'dummy_image/product-6.jpg',
+            'image' => 'dummy_image/6.webp',
             'order' => 3,
         ]);
 

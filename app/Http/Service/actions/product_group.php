@@ -12,7 +12,7 @@ class product_group
         ProductGroup::create([
             'user_id' => Auth::user()->id,
             'website_id' => $id,
-            'name' => 'প্রিমিয়াম জ্যাকেট',
+            'name' => 'প্রিমিয়াম পাঞ্জাবী',
         ]);
 
         return;

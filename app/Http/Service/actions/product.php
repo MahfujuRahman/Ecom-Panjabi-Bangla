@@ -16,11 +16,61 @@ class product
         $product = product_item::create([
             'user_id' => Auth::user()->id,
             'website_id' => $id,
-            'name' => 'প্রিমিয়াম পাফার জ্যাকেট',
+            'name' => 'প্রিমিয়াম পাঞ্জাবী',
             'price' => '1200',
             'discount_price' => '999',
             'product_group_id' => $product_group ? ($product_group->id + 1) : 1,
-            'image' => 'dummy_image/product-1.jpg',
+            'image' => 'dummy_image/1.webp',
+        ]);
+
+        $product = product_item::create([
+            'user_id' => Auth::user()->id,
+            'website_id' => $id,
+            'name' => 'প্রিমিয়াম পাঞ্জাবী',
+            'price' => '1200',
+            'discount_price' => '999',
+            'product_group_id' => $product_group ? ($product_group->id + 1) : 1,
+            'image' => 'dummy_image/2.webp',
+        ]);
+
+        $product = product_item::create([
+            'user_id' => Auth::user()->id,
+            'website_id' => $id,
+            'name' => 'প্রিমিয়াম পাঞ্জাবী',
+            'price' => '1200',
+            'discount_price' => '999',
+            'product_group_id' => $product_group ? ($product_group->id + 1) : 1,
+            'image' => 'dummy_image/3.webp',
+        ]);
+
+        $product = product_item::create([
+            'user_id' => Auth::user()->id,
+            'website_id' => $id,
+            'name' => 'প্রিমিয়াম পাঞ্জাবী',
+            'price' => '1200',
+            'discount_price' => '999',
+            'product_group_id' => $product_group ? ($product_group->id + 1) : 1,
+            'image' => 'dummy_image/4.webp',
+        ]);
+
+        $product = product_item::create([
+            'user_id' => Auth::user()->id,
+            'website_id' => $id,
+            'name' => 'প্রিমিয়াম পাঞ্জাবী',
+            'price' => '1200',
+            'discount_price' => '999',
+            'product_group_id' => $product_group ? ($product_group->id + 1) : 1,
+            'image' => 'dummy_image/5.webp',
+        ]);
+
+        $product = product_item::create([
+            'user_id' => Auth::user()->id,
+            'website_id' => $id,
+            'name' => 'প্রিমিয়াম পাঞ্জাবী',
+            'price' => '1200',
+            'discount_price' => '999',
+            'product_group_id' => $product_group ? ($product_group->id + 1) : 1,
+            'image' => 'dummy_image/6.webp',
         ]);
 
         return;
