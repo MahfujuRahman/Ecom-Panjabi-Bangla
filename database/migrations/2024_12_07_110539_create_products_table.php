@@ -19,9 +19,11 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->float('price')->nullable();
             $table->float('discount_price')->nullable();
-            $table->integer('present_stock')->default(0);
-            $table->integer('total_sold')->default(0);
-            $table->integer('total_purchase')->default(0);
+            $table->integer('present_stock')->unsigned()->default(0);
+            $table->integer('total_sold')->unsigned()->default(0);
+            $table->integer('total_purchase')->unsigned()->default(0);
+            $table->integer('total_return')->unsigned()->default(0);
+            $table->integer('total_gift')->unsigned()->default(0);
             $table->string('image')->nullable();
 
             $table->bigInteger('creator')->unsigned()->nullable();

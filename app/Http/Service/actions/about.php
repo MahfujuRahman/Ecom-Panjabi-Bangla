@@ -102,7 +102,7 @@ class about
             'website_id' => $id,
             'title' => 'আমাদের বৈশিষ্ট্য সমূহ',
             'button_title' => 'এখানে ক্লিক করুন',
-            'button_url' => url('/#order'),
+            'button_url' => '/#order',
             'description_first' => $description_1,
             'description_second' => $description_2,
         ]);

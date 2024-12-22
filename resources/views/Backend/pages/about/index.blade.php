@@ -3,12 +3,26 @@
 @section('content')
     <main class="app-main">
         <div class="container mt-5">
-            <!-- Display Success Message -->
+            <!-- Notification Message -->
             @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                <script>
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-right',
+                        iconColor: 'white',
+                        customClass: {
+                            popup: 'colored-toast',
+                        },
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true,
+                    });
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: "{{ session('success') }}",
+                    });
+                </script>
             @endif
 
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -47,7 +61,7 @@
                                     <td>
                                         <a href="{{ route('about.edit', $item->id) }}"
                                             class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('about.destroy', $item->id) }}" method="POST"
+                                        {{-- <form action="{{ route('about.destroy', $item->id) }}" method="POST"
                                             class="d-inline-block">
                                             @csrf
                                             @method('DELETE')
@@ -55,7 +69,12 @@
                                                 onclick="return confirm('Are you sure you want to delete this about section?')">
                                                 Delete
                                             </button>
-                                        </form>
+                                        </form> --}}
+                                        <a href="#" class="btn btn-danger btn-sm delete-confirm"
+                                            data-url="{{ route('about.destroy', $item->id) }}">
+                                            <i class="fa-solid fa-trash"></i>
+                                            Delete
+                                        </a>
                                     </td>
                                 </tr>
                             @empty

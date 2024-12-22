@@ -235,7 +235,7 @@ class ProductController extends AdminController
     {
 
         $data = $request->validate([
-            'total_purchase' => 'required|numeric',
+            'amount' => 'required|numeric',
             'type' => 'required|string',
         ]);
 
@@ -245,27 +245,35 @@ class ProductController extends AdminController
             $product = Product::findOrFail($id);
 
             if ($data['type'] === 'sale') {
-                if ($product->present_stock < $data['total_purchase']) {
+                if ($product->present_stock < $data['amount']) {
                     return back()->with('error', 'Not enough stock to sell!');
                 }
 
                 $product->update([
-                    'total_sold' => $product->total_sold + $data['total_purchase'],
-                    'present_stock' => $product->present_stock - $data['total_purchase'],
+                    'total_sold' => $product->total_sold + $data['amount'],
+                    'present_stock' => $product->present_stock - $data['amount'],
                 ]);
             }
 
             if ($data['type'] === 'purchase') {
                 $product->update([
-                    'total_purchase' => $product->total_purchase + $data['total_purchase'],
-                    'present_stock' => $product->present_stock + $data['total_purchase'],
+                    'total_purchase' => $product->total_purchase + $data['amount'],
+                    'present_stock' => $product->present_stock + $data['amount'],
                 ]);
             }
 
             if ($data['type'] === 'return') {
                 $product->update([
-                    'total_sold' => $product->total_sold - $data['total_purchase'],
-                    'present_stock' => $product->present_stock + $data['total_purchase'],
+                    'total_sold' => $product->total_sold - $data['amount'],
+                    'present_stock' => $product->present_stock + $data['amount'],
+                    'total_return' => $product->total_return + $data['amount'],
+                ]);
+            }
+
+            if ($data['type'] === 'gift') {
+                $product->update([
+                    'total_gift' => $product->total_gift + $data['amount'],
+                    'present_stock' => $product->present_stock - $data['amount'],
                 ]);
             }
 

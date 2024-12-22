@@ -49,11 +49,11 @@
                         </div>
 
                         <div class="mb-4 position-relative" id="name-row">
-                            <label for="name" class="form-label">Banner Name</label>
+                            <label for="name" class="form-label">Product Name</label>
                             <div class="d-flex justify-content-between">
                                 <div class="col-md-12">
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Enter banner name" required>
+                                        placeholder="Enter product name" required>
                                 </div>
                             </div>
                         </div>

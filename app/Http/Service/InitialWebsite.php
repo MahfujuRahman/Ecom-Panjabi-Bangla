@@ -14,6 +14,7 @@ use App\Http\Service\actions\imageGallery;
 use App\Http\Service\actions\order;
 use App\Http\Service\actions\setting;
 use App\Http\Service\actions\courier;
+use App\Http\Service\actions\dummy_image;
 use App\Http\Service\actions\sms_gateway;
 
 class InitialWebsite
@@ -26,6 +27,7 @@ class InitialWebsite
 
     public function createWebsite($id)
     {
+        $this->init_dummy_image($id);
         $this->init_banner($id);
         $this->init_video($id);
         $this->init_about($id);
@@ -98,6 +100,12 @@ class InitialWebsite
     public function init_sms_gateway($id)
     {
         $setiing = new sms_gateway();
+        $setiing->execute($id);
+    }
+
+    public function init_dummy_image($id)
+    {
+        $setiing = new dummy_image();
         $setiing->execute($id);
     }
 }

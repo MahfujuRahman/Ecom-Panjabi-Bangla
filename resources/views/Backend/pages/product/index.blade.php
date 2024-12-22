@@ -5,16 +5,30 @@
         <div class="container mt-5">
             <!-- Display Success Message -->
             @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                <script>
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-right',
+                        iconColor: 'white',
+                        customClass: {
+                            popup: 'colored-toast',
+                        },
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true,
+                    });
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: "{{ session('success') }}",
+                    });
+                </script>
             @endif
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Product's
                     <sub>
                         ({{ $website_active_id->website->site_url }}.{{ $website_active_id->website->domain_name }})
-                    </sub>  
+                    </sub>
                 </h2>
                 <a href="{{ route('product.create') }}" class="btn btn-primary">Add Product</a>
             </div>
@@ -43,7 +57,7 @@
                             @forelse ($data as $index => $item)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $item->productGroup->name }}</td>
+                                    <td>{{ $item->productGroup?->name }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->price ?? '-' }}</td>
                                     <td>{{ $item->discount_price ?? '-' }}</td>
@@ -62,12 +76,12 @@
                                         <a href="{{ route('product.stock', $item->id) }}"
                                             class="btn btn-success btn-sm">Adjust
                                             Stock</a>
-                                        <form action="{{ route('product.destroy', $item->id) }}" method="POST"
-                                            class="d-inline-block">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
+
+                                        <a href="#" class="btn btn-danger btn-sm delete-confirm"
+                                            data-url="{{ route('product.destroy', $item->id) }}">
+                                            <i class="fa-solid fa-trash"></i>
+                                            Delete
+                                        </a>
 
                                     </td>
                                 </tr>

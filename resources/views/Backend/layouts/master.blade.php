@@ -10,6 +10,7 @@
     <meta name="developer" content="Tech park it limited, MD. Shefat Ullah, S. M. Mahfujur Rahman">
     <meta name="description" content="Dashboard">
     <meta name="keywords" content="Dashboard">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css">
     {{-- <link rel="stylesheet" href="{{ asset('backend/fonts/source-sans.css') }}"> --}}
@@ -20,7 +21,8 @@
     <link rel="stylesheet" href="{{ asset('backend/css/admin.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/custom.css') }}">
 
-
+    <link rel="stylesheet" href="{{ asset('backend/css/sweetalert2.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -65,6 +67,80 @@
             }
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
+
+            if (!csrfTokenMeta) {
+                console.error("CSRF token meta tag not found!");
+                return;
+            }
+
+            const csrfToken = csrfTokenMeta.getAttribute('content');
+
+            const deleteButtons = document.querySelectorAll('.delete-confirm');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const deleteUrl = this.dataset.url;
+
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            fetch(deleteUrl, {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-CSRF-TOKEN': csrfToken,
+                                        'Content-Type': 'application/json',
+                                        'X-Requested-With': 'XMLHttpRequest'
+                                    },
+                                    body: JSON.stringify({
+                                        _method: 'DELETE'
+                                    })
+                                })
+                                .then(response => {
+                                    if (response.ok) {
+                                        Swal.fire({
+                                            title: "Deleted!",
+                                            text: "The banner has been deleted.",
+                                            icon: "success",
+                                            timer: 1000,
+                                            timerProgressBar: true,
+                                            showConfirmButton: false,
+                                        });
+
+                                        setTimeout(() => {
+                                            location
+                                                .reload();
+                                        }, 1000);
+                                    } else {
+                                        Swal.fire("Error!",
+                                            "An error occurred while deleting the banner.",
+                                            "error");
+                                    }
+                                })
+                                .catch(error => {
+                                    Swal.fire("Error!",
+                                        "An error occurred while deleting the banner.",
+                                        "error");
+                                });
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
 
     @stack('scripts')
 

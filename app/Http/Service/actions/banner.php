@@ -2,6 +2,7 @@
 
 namespace App\Http\Service\actions;
 
+use App\Models\Website;
 use Illuminate\Http\Request;
 use App\Models\Home\BannerImages;
 use Illuminate\Support\Facades\Auth;
@@ -11,30 +12,34 @@ class banner
 {
     public function execute($id)
     {
+        $website = Website::find($id);
+        $name = $website->site_name;
+        $folder_name = $name . '.' . $id;
+
         $banner = web_banner::create([
             'user_id' => Auth::user()->id,
             'website_id' => $id,
             'title' => 'স্টাইলিশ পাঞ্জাবী কালেকশন',
             'subtitle' => 'আপনার স্বাচ্ছন্দ্য আর ফ্যাশনের সেরা সমন্বয়',
             'btn_title_1' => "অর্ডার করুন",
-            'btn_url_1' => url('/#order'),
+            'btn_url_1' => '/#order',
             'btn_title_2' => "ভিডিও দেখুন",
             'btn_url_2' => url('https://www.youtube.com/watch?v=eno--4Iviiw'),
         ]);
 
         BannerImages::create([
             'banner_id' => $banner->id,
-            'image' => 'dummy_image/1.webp',
+            'image' => "$folder_name/1.webp",
             'order' => 1,
         ]);
         BannerImages::create([
             'banner_id' => $banner->id,
-            'image' => 'dummy_image/2.webp',
+            'image' => "$folder_name/2.webp",
             'order' => 2,
         ]);
         BannerImages::create([
             'banner_id' => $banner->id,
-            'image' => 'dummy_image/3.webp',
+            'image' => "$folder_name/3.webp",
             'order' => 3,
         ]);
 

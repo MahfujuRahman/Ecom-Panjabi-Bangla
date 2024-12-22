@@ -32,14 +32,15 @@
                             <label for="total_purchase" class="form-label">Adjust Type</label>
                             <select class="form-control" name="type" id="type">
                                 <option value="sale">Sale</option>
-                                <option value="purchase">purchase</option>
-                                <option value="return">return</option>
+                                <option value="purchase">Purchase</option>
+                                <option value="return">Return</option>
+                                <option value="gift">Gift</option>
                             </select>
                         </div>
 
                         <div class="mb-3">
-                            <label for="total_purchase" class="form-label">Adjust Amount</label>
-                            <input type="number" class="form-control" id="total_purchase" name="total_purchase">
+                            <label for="amount" class="form-label">Adjust Amount</label>
+                            <input type="number" class="form-control" id="amount" name="amount">
                         </div>
 
                         <div class="d-flex justify-content-end mt-4">
